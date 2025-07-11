@@ -61,7 +61,7 @@
 
 
 const User = require('../models/User.js');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const joi = require('joi');
 
 const register = async (req, res, next) => {
