@@ -1,17 +1,33 @@
-STEP 1 : Extract the zip folder provided or download it from github
 
-STEP 2 : Open server folder write command "npm install/ npm init -y" to install node modules
+# ⚙️ HR Candidate Tracker – Backend
 
-STEP 3 : Open client folder write command "npm install" to install node modules
+This is the **backend API** for the **HR Candidate Tracker System**, built using **Node.js, Express.js, and MongoDB**. It handles Excel file uploads, candidate data storage, status management, daily reports, and authentication.
 
-STEP 4 : install the packages that are required to run the server(nodemon , cors , express , mongoose , bcrypt , joi ,jsonwbtoken , dotenv , nodemailer )  
+---
 
-STEP 5 : Open server Folder and write command "nodemon index.js"
+## 🚀 Features
 
-STEP 6 : install the packages that are required to run the server  
+- Upload and parse Excel (.xlsx) files
+- Store candidate data in MongoDB
+- Update candidate statuses and notes
+- Generate daily call summary report
+- Secure login system for HR using JWT
+- RESTful API endpoints
+- Export filtered candidates to Excel
 
-STEP 7 : Open   client Folder and write command "npm start"
+---
 
-i have deployed the frontend of the project on vercel app  https://frontend-zeta-two-22.vercel.app/ 
+## 🧰 Tech Stack
 
-backend coding of project is completed  just hosting is  remaining .. 
+- **Node.js**
+- **Express.js**
+- **MongoDB + Mongoose**
+- **Multer** for file uploads
+- **xlsx** for Excel file parsing
+- **jsonwebtoken** for authentication
+- **bcrypt** for password hashing
+- **cors** and **dotenv**
+
+---
+
+
