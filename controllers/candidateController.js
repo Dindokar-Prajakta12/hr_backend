@@ -46,16 +46,34 @@ exports.updateCandidate = async (req, res) => {
 };
 
 // 📊 Summary Report
+// exports.getSummary = async (req, res) => {
+//   const total = await Candidate.countDocuments();
+//   const connected = await Candidate.countDocuments({ status: { $ne: "Not Connected" } });
+//   const notConnected = await Candidate.countDocuments({ status: "Not Connected" });
+//   const shortlisted = await Candidate.countDocuments({ status: "Shortlisted" });
+//   const rejected = await Candidate.countDocuments({ status: "Rejected" });
+
+//   res.json({ total, connected, notConnected, shortlisted, rejected });
+// };
+
 exports.getSummary = async (req, res) => {
-  const total = await Candidate.countDocuments();
-  const connected = await Candidate.countDocuments({ status: { $ne: "Not Connected" } });
-  const notConnected = await Candidate.countDocuments({ status: "Not Connected" });
-  const shortlisted = await Candidate.countDocuments({ status: "Shortlisted" });
-  const rejected = await Candidate.countDocuments({ status: "Rejected" });
+  // Get today's start and end time
+  const startOfDay = new Date();
+  startOfDay.setHours(0, 0, 0, 0);
+  const endOfDay = new Date();
+  endOfDay.setHours(23, 59, 59, 999);
+
+  // Filter for candidates created today
+  const dateFilter = { createdAt: { $gte: startOfDay, $lte: endOfDay } };
+
+  const total = await Candidate.countDocuments(dateFilter);
+  const connected = await Candidate.countDocuments({ ...dateFilter, status: { $ne: "Not Connected" } });
+  const notConnected = await Candidate.countDocuments({ ...dateFilter, status: "Not Connected" });
+  const shortlisted = await Candidate.countDocuments({ ...dateFilter, status: "Shortlisted" });
+  const rejected = await Candidate.countDocuments({ ...dateFilter, status: "Rejected" });
 
   res.json({ total, connected, notConnected, shortlisted, rejected });
 };
-
 // 🗑️ DELETE a Candidate
 exports.deleteCandidate = async (req, res) => {
   const { id } = req.params;
